@@ -132,9 +132,26 @@ function Dashboard(props) {
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" noWrap component="div">
-            Dashboard
-          </Typography>
+          <Box
+            sx={{
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              flexWrap: 'wrap',
+            }}
+          >
+            <Typography sx={{ mx: 2 }} variant="h6" noWrap component="div">
+              Dashboard
+            </Typography>
+            <NavLink to="/" style={{ textDecoration: 'none', color: 'white' }}>
+              <Typography sx={{ mx: 2 }} variant="h6" noWrap component="div">
+                Home
+              </Typography>
+            </NavLink>
+            <Typography variant="h6" noWrap component="div">
+              Welcome, Name Name
+            </Typography>
+          </Box>
         </Toolbar>
       </AppBar>
       <Box
