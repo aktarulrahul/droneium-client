@@ -8,9 +8,10 @@ import {
   Typography,
 } from '@mui/material';
 import React from 'react';
+import { Link } from 'react-router-dom';
 
-const DroneCard = ({ drone, isLoading }) => {
-  const { name, img, description, price } = drone;
+const DroneCard = ({ drone }) => {
+  const { _id, name, img, description, price } = drone;
   return (
     <Grid item xs={12} md={4}>
       <Card
@@ -25,12 +26,7 @@ const DroneCard = ({ drone, isLoading }) => {
           },
         }}
       >
-        <CardMedia
-          component="img"
-          height="300"
-          image={img}
-          alt="green iguana"
-        />
+        <CardMedia component="img" height="300" image={img} alt={name} />
         <CardContent>
           <Typography gutterBottom variant="h5" component="div">
             {name}
@@ -41,9 +37,11 @@ const DroneCard = ({ drone, isLoading }) => {
         </CardContent>
         <CardActions sx={{ justifyContent: 'space-between' }}>
           <Typography variant="h4">${price}</Typography>
-          <Button variant="contained" size="small">
-            Buy Now
-          </Button>
+          <Link style={{ textDecoration: 'none' }} to={`/drones/${_id}`}>
+            <Button variant="contained" size="small">
+              Buy Now
+            </Button>
+          </Link>
         </CardActions>
       </Card>
     </Grid>
