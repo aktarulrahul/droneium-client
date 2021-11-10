@@ -1,31 +1,158 @@
 import React, { useEffect, useState } from 'react';
-import { useHistory, useParams } from 'react-router';
+import { useParams } from 'react-router';
 import axios from 'axios';
 import { useForm } from 'react-hook-form';
+import {
+  Container,
+  Grid,
+  Box,
+  Typography,
+  TextField,
+  Button,
+} from '@mui/material';
+import useAuth from '../../../hooks/useAuth';
+import Loading from '../../Shared/Loading/Loading';
 
 const Booking = () => {
-  const { register, handleSubmit, reset, control } = useForm();
+  const { register, handleSubmit, reset } = useForm();
+  const { user } = useAuth();
   const { droneId } = useParams();
   const [drone, setDrone] = useState({});
+  const [droneLoading, setDroneLoading] = useState(true);
   const { name, img, price, description } = drone;
   useEffect(() => {
+    setDroneLoading(true);
     fetch(`http://localhost:5000/drones/${droneId}`)
       .then((res) => res.json())
-      .then((data) => setDrone(data));
-  }, [droneId]);
+      .then((data) => {
+        setDrone(data);
+        setDroneLoading(false);
+      });
+  }, []);
 
   const onSubmit = (data) => {
+    console.log(data);
     const purchaseInfo = {
       ...data,
       status: 'pending',
     };
-    axios.post('', purchaseInfo).then((res) => {
+    axios.post('http://localhost:5000/orders', purchaseInfo).then((res) => {
+      console.log('submitted');
       if (res.data.insertedId) {
         reset();
       }
     });
   };
-  return <h2>{drone.name}</h2>;
+  if (droneLoading) {
+    return <Loading />;
+  }
+  return (
+    <Container>
+      <Grid container spacing={2}>
+        {/* Shipping Information */}
+        <Grid item xs={12} md={6}>
+          <Box
+            sx={{
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}
+          >
+            <Typography variant="h2" sx={{ my: 2 }}>
+              Shipping Address
+            </Typography>
+            <form onSubmit={handleSubmit(onSubmit)}>
+              <Box
+                sx={{
+                  width: 500,
+                  maxWidth: '100%',
+                }}
+              >
+                <TextField
+                  sx={{ my: 2 }}
+                  fullWidth
+                  label="Name"
+                  defaultValue={user.displayName}
+                  multiline
+                  {...register('name', {
+                    required: true,
+                  })}
+                  placeholder="Name"
+                />
+
+                <br />
+                <TextField
+                  sx={{ my: 2 }}
+                  fullWidth
+                  label="Email"
+                  defaultValue={user.email}
+                  {...register('email', {
+                    required: true,
+                  })}
+                  placeholder="Email"
+                />
+
+                <br />
+
+                <TextField
+                  sx={{ my: 2 }}
+                  fullWidth
+                  label="Phone Number"
+                  type="text"
+                  {...register('phone', { required: true })}
+                  placeholder="Phone"
+                />
+
+                <br />
+                <TextField
+                  sx={{ my: 2 }}
+                  fullWidth
+                  label="Product Name"
+                  defaultValue={name}
+                  type="text"
+                  {...register('DroneName', { required: true })}
+                  placeholder="Drone Name"
+                />
+
+                <br />
+                <TextField
+                  sx={{ my: 2 }}
+                  fullWidth
+                  label="Drone Price"
+                  defaultValue={price}
+                  type="number"
+                  {...register('price', { required: true })}
+                  placeholder="Price"
+                />
+
+                <br />
+                <TextField
+                  sx={{ my: 2 }}
+                  fullWidth
+                  label="Address"
+                  multiline
+                  rows={4}
+                  {...register('address', { required: true })}
+                  placeholder="Address"
+                />
+                <br />
+                <TextField
+                  sx={{ display: 'flex', justifyContent: 'center' }}
+                  type="submit"
+                  value="Order Confirm"
+                />
+              </Box>
+            </form>
+          </Box>
+        </Grid>
+        {/* Drone Information */}
+        <Grid item xs={12} md={6}>
+          {name}
+        </Grid>
+      </Grid>
+    </Container>
+  );
 };
 
 export default Booking;
