@@ -3,7 +3,7 @@ import Navigation from '../../Shared/Navigation/Navigation';
 import DroneContainer from '../../Shared/Drones/DroneContainer/DroneContainer';
 import ReviewContainer from '../Reviews/ReviewContainer/ReviewContainer';
 import Footer from '../../Shared/Footer/Footer';
-import Banner from '../Banner/Banner';
+import Banner from '../Banner/Banner/Banner';
 
 const Home = () => {
   return (

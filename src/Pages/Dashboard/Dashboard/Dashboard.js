@@ -2,12 +2,18 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import MenuIcon from '@mui/icons-material/Menu';
 import { NavLink, useRouteMatch, Switch, Route } from 'react-router-dom';
+import useAuth from '../../../hooks/useAuth';
+import Review from '../Review/Review';
+import NotFound from '../../NotFound/NotFound';
+import AdminRoute from '../../Login/Login/AdminRoute/AdminRoute';
+import DashboardHome from '../DashboardHome/DashboardHome';
 import ManageAllOrders from '../ManageAllOrders/ManageAllOrders';
 import AddDrone from '../AddDrone/AddDrone';
 import MakeAdmin from '../MakeAdmin/MakeAdmin';
 import ManageDrones from '../ManageDrones/ManageDrones';
 import Pay from '../Pay/Pay';
 import MyOrders from '../MyOrders/MyOrders';
+import LocalMallIcon from '@mui/icons-material/LocalMall';
 import {
   Button,
   AppBar,
@@ -22,11 +28,6 @@ import {
   Typography,
   Toolbar,
 } from '@mui/material';
-import useAuth from '../../../hooks/useAuth';
-import Review from '../Review/Review';
-import NotFound from '../../NotFound/NotFound';
-import AdminRoute from '../../Login/Login/AdminRoute/AdminRoute';
-import DashboardHome from '../DashboardHome/DashboardHome';
 
 const drawerWidth = 240;
 
@@ -153,9 +154,10 @@ function Dashboard(props) {
           <Box
             sx={{
               display: 'flex',
-              justifyContent: 'center',
+              jjustifyContent: 'space-between',
               alignItems: 'center',
               flexWrap: 'wrap',
+              flexGrow: 1,
             }}
           >
             <Typography sx={{ mx: 2 }} variant="h6" noWrap component="div">

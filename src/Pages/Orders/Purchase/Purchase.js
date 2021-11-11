@@ -29,10 +29,9 @@ const Booking = () => {
         setDrone(data);
         setDroneLoading(false);
       });
-  }, []);
+  }, [droneId]);
 
   const onSubmit = (data) => {
-    console.log(data);
     const purchaseInfo = {
       ...data,
       status: 'pending',
@@ -40,7 +39,6 @@ const Booking = () => {
     axios
       .post('https://aktarulrahul-droneium.herokuapp.com/orders', purchaseInfo)
       .then((res) => {
-        console.log('submitted');
         if (res.data.insertedId) {
           reset();
           history.push('/dashboard/pay');

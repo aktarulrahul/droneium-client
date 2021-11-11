@@ -46,7 +46,6 @@ const ManageAllOrders = () => {
     }
   };
   const handleStatusChange = (e, id) => {
-    console.log(e.target.value);
     if (window.confirm(`${e.target.value} the Order?`)) {
       axios
         .put(`https://aktarulrahul-droneium.herokuapp.com/orders/${id}`, {
