@@ -8,7 +8,6 @@ import MakeAdmin from '../MakeAdmin/MakeAdmin';
 import ManageDrones from '../ManageDrones/ManageDrones';
 import Pay from '../Pay/Pay';
 import MyOrders from '../MyOrders/MyOrders';
-import Review from '../Review/Review';
 import {
   Button,
   AppBar,
@@ -23,11 +22,17 @@ import {
   Typography,
   Toolbar,
 } from '@mui/material';
+import useAuth from '../../../hooks/useAuth';
+import Review from '../Review/Review';
+import NotFound from '../../NotFound/NotFound';
+import AdminRoute from '../../Login/Login/AdminRoute/AdminRoute';
+import DashboardHome from '../DashboardHome/DashboardHome';
 
 const drawerWidth = 240;
 
 function Dashboard(props) {
   let { path, url } = useRouteMatch();
+  const { user, logout, admin } = useAuth();
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
@@ -40,70 +45,83 @@ function Dashboard(props) {
       <Toolbar />
       <Divider />
       <List>
-        <NavLink
-          style={{ textDecoration: 'none', color: 'black' }}
-          to={`${url}/manage-all-orders`}
-        >
+        <NavLink style={{ textDecoration: 'none', color: 'black' }} to="/">
           <ListItem button>
-            <ListItemText primary="Manage All Orders" />
-          </ListItem>
-        </NavLink>
-        <NavLink
-          style={{ textDecoration: 'none', color: 'black' }}
-          to={`${url}/add-drone`}
-        >
-          <ListItem button>
-            <ListItemText primary="Add a New Drone" />
-          </ListItem>
-        </NavLink>
-        <NavLink
-          style={{ textDecoration: 'none', color: 'black' }}
-          to={`${url}/make-admin`}
-        >
-          <ListItem button>
-            <ListItemText primary="Make Admin" />
-          </ListItem>
-        </NavLink>
-        <NavLink
-          style={{ textDecoration: 'none', color: 'black' }}
-          to={`${url}/manage-drones`}
-        >
-          <ListItem button>
-            <ListItemText primary="Manage Drones" />
+            <ListItemText primary="Home" />
           </ListItem>
         </NavLink>
       </List>
       <Divider />
-      <List>
-        <NavLink
-          style={{ textDecoration: 'none', color: 'black' }}
-          to={`${url}/pay`}
-        >
-          <ListItem button>
-            <ListItemText primary="Pay" />
-          </ListItem>
-        </NavLink>
-        <NavLink
-          style={{ textDecoration: 'none', color: 'black' }}
-          to={`${url}/my-orders?email='rahul@ai.com'`}
-        >
-          <ListItem button>
-            <ListItemText primary="My Orders" />
-          </ListItem>
-        </NavLink>
-        <NavLink
-          style={{ textDecoration: 'none', color: 'black' }}
-          to={`${url}/review`}
-        >
-          <ListItem button>
-            <ListItemText primary="Review" />
-          </ListItem>
-        </NavLink>
-      </List>
+      {admin ? (
+        <List>
+          <NavLink
+            style={{ textDecoration: 'none', color: 'black' }}
+            to={`${url}/manage-all-orders`}
+          >
+            <ListItem button>
+              <ListItemText primary="Manage All Orders" />
+            </ListItem>
+          </NavLink>
+          <NavLink
+            style={{ textDecoration: 'none', color: 'black' }}
+            to={`${url}/add-drone`}
+          >
+            <ListItem button>
+              <ListItemText primary="Add a New Drone" />
+            </ListItem>
+          </NavLink>
+          <NavLink
+            style={{ textDecoration: 'none', color: 'black' }}
+            to={`${url}/make-admin`}
+          >
+            <ListItem button>
+              <ListItemText primary="Make Admin" />
+            </ListItem>
+          </NavLink>
+          <NavLink
+            style={{ textDecoration: 'none', color: 'black' }}
+            to={`${url}/manage-drones`}
+          >
+            <ListItem button>
+              <ListItemText primary="Manage Drones" />
+            </ListItem>
+          </NavLink>
+        </List>
+      ) : (
+        <List>
+          <NavLink
+            style={{ textDecoration: 'none', color: 'black' }}
+            to={`${url}/my-orders`}
+          >
+            <ListItem button>
+              <ListItemText primary="My Orders" />
+            </ListItem>
+          </NavLink>
+
+          <NavLink
+            style={{ textDecoration: 'none', color: 'black' }}
+            to={`${url}/review`}
+          >
+            <ListItem button>
+              <ListItemText primary="Review" />
+            </ListItem>
+          </NavLink>
+          <NavLink
+            style={{ textDecoration: 'none', color: 'black' }}
+            to={`${url}/pay`}
+          >
+            <ListItem button>
+              <ListItemText primary="Pay" />
+            </ListItem>
+          </NavLink>
+        </List>
+      )}
       <Divider />
       <List>
         <ListItem button sx={{ justifyContent: 'center' }}>
-          <Button variant="contained">Logout</Button>
+          <Button variant="contained" onClick={logout}>
+            Logout
+          </Button>
         </ListItem>
       </List>
     </div>
@@ -143,13 +161,9 @@ function Dashboard(props) {
             <Typography sx={{ mx: 2 }} variant="h6" noWrap component="div">
               Dashboard
             </Typography>
-            <NavLink to="/" style={{ textDecoration: 'none', color: 'white' }}>
-              <Typography sx={{ mx: 2 }} variant="h6" noWrap component="div">
-                Home
-              </Typography>
-            </NavLink>
-            <Typography variant="h6" noWrap component="div">
-              Welcome, Name Name
+
+            <Typography variant="body2" noWrap component="div">
+              Hello, {user.displayName}
             </Typography>
           </Box>
         </Toolbar>
@@ -202,17 +216,20 @@ function Dashboard(props) {
       >
         <Toolbar />
         <Switch>
-          <Route path={`${path}/manage-all-orders`}>
+          <AdminRoute path={`${path}/manage-all-orders`}>
             <ManageAllOrders />
-          </Route>
-          <Route path={`${path}/add-drone`}>
+          </AdminRoute>
+          <AdminRoute path={`${path}/add-drone`}>
             <AddDrone />
-          </Route>
-          <Route path={`${path}/make-admin`}>
+          </AdminRoute>
+          <AdminRoute path={`${path}/make-admin`}>
             <MakeAdmin />
-          </Route>
-          <Route path={`${path}/manage-drones`}>
+          </AdminRoute>
+          <AdminRoute path={`${path}/manage-drones`}>
             <ManageDrones />
+          </AdminRoute>
+          <Route exact path={`${path}/`}>
+            <DashboardHome />
           </Route>
           <Route path={`${path}/pay`}>
             <Pay />
@@ -220,8 +237,12 @@ function Dashboard(props) {
           <Route path={`${path}/my-orders`}>
             <MyOrders />
           </Route>
-          <Route path={`${path}/review'`}>
+
+          <Route path={`${path}/review`}>
             <Review />
+          </Route>
+          <Route path={`${path}/*`}>
+            <NotFound />
           </Route>
         </Switch>
       </Box>

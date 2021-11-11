@@ -1,16 +1,10 @@
-import {
-  Container,
-  Typography,
-  TextField,
-  Button,
-  CircularProgress,
-  Alert,
-} from '@mui/material';
+import { Container, Typography, TextField, Button, Alert } from '@mui/material';
 import React, { useState } from 'react';
 import { Grid } from '@mui/material';
 import { NavLink, useHistory, useLocation } from 'react-router-dom';
 import useAuth from './../../../hooks/useAuth';
 import LoginAnimation from '../LoginAnimation/LoginAnimation';
+import Loading from '../../Shared/Loading/Loading';
 
 const Register = () => {
   const [loginData, setLoginData] = useState({});
@@ -100,7 +94,7 @@ const Register = () => {
               </Button>
             </form>
           )}
-          {isLoading && <CircularProgress />}
+          {isLoading && <Loading />}
           {user?.email && (
             <Alert severity="success">User Created successfully!</Alert>
           )}

@@ -71,9 +71,9 @@ const useFirebase = () => {
       .then((result) => {
         const user = result.user;
         saveUser(user.email, user.displayName, 'PUT');
-        setAuthError('');
         const destination = location?.state?.from || '/';
         history.replace(destination);
+        setAuthError('');
       })
       .catch((error) => {
         setAuthError(error.message);
@@ -86,6 +86,7 @@ const useFirebase = () => {
     const unsubscribed = onAuthStateChanged(auth, (user) => {
       if (user) {
         setUser(user);
+        // get jwt token on client side
         getIdToken(user).then((idToken) => {
           setToken(idToken);
         });
@@ -97,8 +98,9 @@ const useFirebase = () => {
     return () => unsubscribed;
   }, [auth]);
 
+  // Check user role
   useEffect(() => {
-    fetch(`http://localhost:5000/users/${user.email}`)
+    fetch(`https://aktarulrahul-droneium.herokuapp.com/users/${user.email}`)
       .then((res) => res.json())
       .then((data) => setAdmin(data.admin));
   }, [user.email]);
@@ -119,7 +121,7 @@ const useFirebase = () => {
   // Save User to The Database
   const saveUser = (email, displayName, method) => {
     const user = { email, displayName };
-    fetch('http://localhost:5000/users', {
+    fetch('https://aktarulrahul-droneium.herokuapp.com/users', {
       method: method,
       headers: {
         'content-type': 'application/json',

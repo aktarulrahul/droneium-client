@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router';
+import { useHistory, useParams } from 'react-router';
 import axios from 'axios';
 import { useForm } from 'react-hook-form';
 import {
@@ -15,6 +15,7 @@ import Loading from '../../Shared/Loading/Loading';
 
 const Booking = () => {
   const { register, handleSubmit, reset } = useForm();
+  const history = useHistory();
   const { user } = useAuth();
   const { droneId } = useParams();
   const [drone, setDrone] = useState({});
@@ -22,7 +23,7 @@ const Booking = () => {
   const { name, img, price, description } = drone;
   useEffect(() => {
     setDroneLoading(true);
-    fetch(`http://localhost:5000/drones/${droneId}`)
+    fetch(`https://aktarulrahul-droneium.herokuapp.com/drones/${droneId}`)
       .then((res) => res.json())
       .then((data) => {
         setDrone(data);
@@ -36,12 +37,15 @@ const Booking = () => {
       ...data,
       status: 'pending',
     };
-    axios.post('http://localhost:5000/orders', purchaseInfo).then((res) => {
-      console.log('submitted');
-      if (res.data.insertedId) {
-        reset();
-      }
-    });
+    axios
+      .post('https://aktarulrahul-droneium.herokuapp.com/orders', purchaseInfo)
+      .then((res) => {
+        console.log('submitted');
+        if (res.data.insertedId) {
+          reset();
+          history.push('/dashboard/pay');
+        }
+      });
   };
   if (droneLoading) {
     return <Loading />;

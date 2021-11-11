@@ -19,7 +19,7 @@ const ManageDrones = () => {
 
   useEffect(() => {
     setIsLoading(true);
-    fetch('http://localhost:5000/drones')
+    fetch('https://aktarulrahul-droneium.herokuapp.com/drones')
       .then((res) => res.json())
       .then((data) => {
         setDrones(data);
@@ -32,13 +32,15 @@ const ManageDrones = () => {
   const handleDelete = (id) => {
     setIsDeleted(false);
     if (window.confirm('Want To Delete the Drone?')) {
-      axios.delete(`http://localhost:5000/drones/${id}`).then((res) => {
-        if (res.data.deletedCount) {
-          setIsDeleted(true);
-        } else {
-          setIsDeleted(false);
-        }
-      });
+      axios
+        .delete(`https://aktarulrahul-droneium.herokuapp.com/drones/${id}`)
+        .then((res) => {
+          if (res.data.deletedCount) {
+            setIsDeleted(true);
+          } else {
+            setIsDeleted(false);
+          }
+        });
     }
   };
   return (

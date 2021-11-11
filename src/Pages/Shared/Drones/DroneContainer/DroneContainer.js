@@ -14,7 +14,7 @@ const DroneContainer = ({ home }) => {
 
   useEffect(() => {
     setIsLoading(true);
-    fetch('http://localhost:5000/drones')
+    fetch('https://aktarulrahul-droneium.herokuapp.com/drones')
       .then((res) => res.json())
       .then((data) => {
         setDrones(data);

@@ -9,12 +9,14 @@ const AddDrone = () => {
   const { register, handleSubmit, reset } = useForm();
   const onSubmit = (data) => {
     setSuccess(false);
-    axios.post('http://localhost:5000/drones', data).then((res) => {
-      if (res.data.insertedId) {
-        reset();
-        setSuccess(true);
-      }
-    });
+    axios
+      .post('https://aktarulrahul-droneium.herokuapp.com/drones', data)
+      .then((res) => {
+        if (res.data.insertedId) {
+          reset();
+          setSuccess(true);
+        }
+      });
   };
   return (
     <Box

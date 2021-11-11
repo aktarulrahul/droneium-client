@@ -21,7 +21,7 @@ const ManageAllOrders = () => {
 
   useEffect(() => {
     setIsLoading(true);
-    fetch('http://localhost:5000/orders')
+    fetch('https://aktarulrahul-droneium.herokuapp.com/orders')
       .then((res) => res.json())
       .then((data) => {
         setOrders(data);
@@ -34,20 +34,22 @@ const ManageAllOrders = () => {
   const handleCancel = (id) => {
     setIsChange(false);
     if (window.confirm('Want To Cancel the Order?')) {
-      axios.delete(`http://localhost:5000/orders/${id}`).then((res) => {
-        if (res.data.deletedCount) {
-          setIsChange(true);
-        } else {
-          setIsChange(false);
-        }
-      });
+      axios
+        .delete(`https://aktarulrahul-droneium.herokuapp.com/orders/${id}`)
+        .then((res) => {
+          if (res.data.deletedCount) {
+            setIsChange(true);
+          } else {
+            setIsChange(false);
+          }
+        });
     }
   };
   const handleStatusChange = (e, id) => {
     console.log(e.target.value);
     if (window.confirm(`${e.target.value} the Order?`)) {
       axios
-        .put(`http://localhost:5000/orders/${id}`, {
+        .put(`https://aktarulrahul-droneium.herokuapp.com/orders/${id}`, {
           status: e.target.value,
         })
         .then((res) => {
@@ -104,10 +106,7 @@ const ManageAllOrders = () => {
               <TableCell align="right">{drone.status}</TableCell>
               <TableCell align="right">
                 <Select
-                  labelId="demo-simple-select-label"
-                  id="demo-simple-select"
                   value={drone.status}
-                  label="Age"
                   onChange={(e) => handleStatusChange(e, drone._id)}
                 >
                   <MenuItem value="pending">pending</MenuItem>

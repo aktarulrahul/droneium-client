@@ -3,7 +3,6 @@ import {
   Typography,
   TextField,
   Button,
-  CircularProgress,
   Alert,
   Grid,
   Box,
@@ -12,6 +11,7 @@ import React, { useState } from 'react';
 import { NavLink, useLocation, useHistory } from 'react-router-dom';
 import useAuth from './../../../hooks/useAuth';
 import LoginAnimation from '../LoginAnimation/LoginAnimation';
+import Loading from '../../Shared/Loading/Loading';
 
 const Login = () => {
   const [loginData, setLoginData] = useState({});
@@ -87,7 +87,7 @@ const Login = () => {
               Login
             </Button>
 
-            {isLoading && <CircularProgress />}
+            {isLoading && <Loading />}
             {user?.email && (
               <Alert severity="success">Login successfully!</Alert>
             )}
