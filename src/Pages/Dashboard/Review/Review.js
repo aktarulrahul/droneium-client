@@ -9,6 +9,7 @@ import {
   AlertTitle,
   MenuItem,
   Select,
+  Rating,
 } from '@mui/material';
 import { NavLink } from 'react-router-dom';
 import useAuth from '../../../hooks/useAuth';
@@ -94,11 +95,21 @@ const Review = () => {
             defaultValue="5"
             {...register('rating', { required: true })}
           >
-            <MenuItem value="1">1</MenuItem>
-            <MenuItem value="2">2</MenuItem>
-            <MenuItem value="3">3</MenuItem>
-            <MenuItem value="4">4</MenuItem>
-            <MenuItem value="5">5</MenuItem>
+            <MenuItem value="1">
+              <Rating name="read-only" value="1" readOnly />
+            </MenuItem>
+            <MenuItem value="2">
+              <Rating name="read-only" value="2" readOnly />
+            </MenuItem>
+            <MenuItem value="3">
+              <Rating name="read-only" value="3" readOnly />
+            </MenuItem>
+            <MenuItem value="4">
+              <Rating name="read-only" value="4" readOnly />
+            </MenuItem>
+            <MenuItem value="5">
+              <Rating name="read-only" value="5" readOnly />
+            </MenuItem>
           </Select>
 
           <br />

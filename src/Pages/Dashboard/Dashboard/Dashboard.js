@@ -28,7 +28,7 @@ import {
   Toolbar,
 } from '@mui/material';
 
-const drawerWidth = 240;
+const drawerWidth = 180;
 
 function Dashboard(props) {
   let { path, url } = useRouteMatch();
