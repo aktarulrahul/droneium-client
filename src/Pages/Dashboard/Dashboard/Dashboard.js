@@ -13,7 +13,6 @@ import MakeAdmin from '../MakeAdmin/MakeAdmin';
 import ManageDrones from '../ManageDrones/ManageDrones';
 import Pay from '../Pay/Pay';
 import MyOrders from '../MyOrders/MyOrders';
-import LocalMallIcon from '@mui/icons-material/LocalMall';
 import {
   Button,
   AppBar,

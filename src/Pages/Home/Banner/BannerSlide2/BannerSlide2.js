@@ -1,7 +1,6 @@
 import React from 'react';
 import { Box, Button, Typography } from '@mui/material';
 import video from '../../../../video/drone-v3.mp4';
-import banner from '../../../../images/banner2.png';
 import { NavLink } from 'react-router-dom';
 import Typist from 'react-typist';
 import TextLoop from 'react-text-loop';
@@ -24,12 +23,6 @@ const BannerSlide2 = () => {
 
       <Box
         sx={{
-          backgroundImage: `url(${banner})`,
-          backgroundRepeat: 'no-repeat',
-          backgroundPosition: 'center',
-          backgroundSize: 'cover',
-          objectFit: 'cover',
-          py: 8,
           position: 'absolute',
           top: 0,
           bottom: 0,
@@ -40,8 +33,8 @@ const BannerSlide2 = () => {
           marginTop: 'auto',
           marginBottom: 'auto',
 
-          width: '70%',
-          height: '60%',
+          width: '90%',
+          height: '50%',
           overflow: 'hidden',
         }}
       >

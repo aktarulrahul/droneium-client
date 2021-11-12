@@ -13,7 +13,7 @@ const LoginAnimation = () => {
   };
   return (
     <div>
-      <Lottie options={defaultOptions} height={'auto'} width={500} />
+      <Lottie options={defaultOptions} height={'auto'} width={'auto'} />
     </div>
   );
 };

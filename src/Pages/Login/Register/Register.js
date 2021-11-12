@@ -38,13 +38,13 @@ const Register = () => {
   return (
     <Container
       sx={{
-        my: 8,
+        my: 1,
         py: 8,
         borderRadius: '15px',
         boxShadow: '0 0 10px rgba(0,0,0,0.6)',
       }}
     >
-      <Grid container spacing={2}>
+      <Grid container spacing={2} sx={{ alignItems: 'center' }}>
         <Grid item xs={12} md={6}>
           <Typography sx={{ textAlign: 'center' }} variant="h5" gutterBottom>
             Please Register

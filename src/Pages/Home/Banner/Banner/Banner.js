@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React from 'react';
 // Import Swiper React components
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/swiper-bundle.min.css';
@@ -10,7 +10,6 @@ import './Banner.css';
 import SwiperCore, { Autoplay, Pagination, Navigation } from 'swiper';
 import BannerSlide1 from '../BannerSlide1/BannerSlide1';
 import BannerSlide2 from '../BannerSlide2/BannerSlide2';
-import BannerSlide3 from '../BannerSlide3/BannerSlide3';
 
 // install Swiper modules
 SwiperCore.use([Autoplay, Pagination, Navigation]);
