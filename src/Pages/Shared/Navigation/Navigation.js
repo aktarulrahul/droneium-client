@@ -108,7 +108,7 @@ const Navigation = () => {
             </IconButton>
             <Typography
               className={bandLogo}
-              variant="h6"
+              variant="h4"
               component="div"
               sx={{ flexGrow: 1 }}
             >
