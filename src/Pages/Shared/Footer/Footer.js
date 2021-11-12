@@ -137,7 +137,7 @@ const Footer = () => {
         {/* Divider */}
         <Divider variant="middle" />
         {/* text */}
-        <Typography variant="h6" align="center">
+        <Typography variant="h6" align="center" sx={{ my: 1 }}>
           Droneium | 2021. All rights reserved.
         </Typography>
       </Container>

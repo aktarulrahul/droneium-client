@@ -18,9 +18,10 @@ const Review = () => {
   const { user } = useAuth();
   const { register, handleSubmit, reset } = useForm();
   const onSubmit = (data) => {
+    const reviewData = { ...data, img: user.photoURL };
     setSuccess(false);
     axios
-      .post('https://aktarulrahul-droneium.herokuapp.com/reviews', data)
+      .post('https://aktarulrahul-droneium.herokuapp.com/reviews', reviewData)
       .then((res) => {
         if (res.data.insertedId) {
           reset();

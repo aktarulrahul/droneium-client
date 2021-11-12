@@ -50,6 +50,14 @@ function Dashboard(props) {
             <ListItemText primary="Home" />
           </ListItem>
         </NavLink>
+        <NavLink
+          style={{ textDecoration: 'none', color: 'black' }}
+          to="/explore"
+        >
+          <ListItem button>
+            <ListItemText primary="Explore" />
+          </ListItem>
+        </NavLink>
       </List>
       <Divider />
       {admin ? (

@@ -12,6 +12,8 @@ import {
 } from '@mui/material';
 import useAuth from '../../../hooks/useAuth';
 import Loading from '../../Shared/Loading/Loading';
+import Navigation from '../../Shared/Navigation/Navigation';
+import Footer from '../../Shared/Footer/Footer';
 
 const Booking = () => {
   const { register, handleSubmit, reset } = useForm();
@@ -49,111 +51,119 @@ const Booking = () => {
     return <Loading />;
   }
   return (
-    <Container>
-      <Grid container spacing={2}>
-        {/* Shipping Information */}
-        <Grid item xs={12} md={6}>
-          <Box
-            sx={{
-              display: 'flex',
-              flexDirection: 'column',
-              justifyContent: 'center',
-              alignItems: 'center',
-            }}
-          >
-            <Typography variant="h2" sx={{ my: 2 }}>
-              Shipping Address
-            </Typography>
-            <form onSubmit={handleSubmit(onSubmit)}>
-              <Box
-                sx={{
-                  width: 500,
-                  maxWidth: '100%',
-                }}
-              >
-                <TextField
-                  sx={{ my: 2 }}
-                  fullWidth
-                  label="Name"
-                  defaultValue={user.displayName}
-                  multiline
-                  {...register('name', {
-                    required: true,
-                  })}
-                  placeholder="Name"
-                />
+    <>
+      <Navigation />
+      <Container>
+        <Grid container spacing={2}>
+          {/* Shipping Information */}
+          <Grid item xs={12} md={6}>
+            <Box
+              sx={{
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}
+            >
+              <Typography variant="h2" sx={{ my: 2 }}>
+                Shipping Address
+              </Typography>
+              <form onSubmit={handleSubmit(onSubmit)}>
+                <Box
+                  sx={{
+                    width: 500,
+                    maxWidth: '100%',
+                  }}
+                >
+                  <TextField
+                    sx={{ my: 2 }}
+                    fullWidth
+                    label="Name"
+                    defaultValue={user.displayName}
+                    multiline
+                    {...register('name', {
+                      required: true,
+                    })}
+                    placeholder="Name"
+                  />
 
-                <br />
-                <TextField
-                  sx={{ my: 2 }}
-                  fullWidth
-                  label="Email"
-                  defaultValue={user.email}
-                  {...register('email', {
-                    required: true,
-                  })}
-                  placeholder="Email"
-                />
+                  <br />
+                  <TextField
+                    sx={{ my: 2 }}
+                    fullWidth
+                    label="Email"
+                    defaultValue={user.email}
+                    {...register('email', {
+                      required: true,
+                    })}
+                    placeholder="Email"
+                  />
 
-                <br />
+                  <br />
 
-                <TextField
-                  sx={{ my: 2 }}
-                  fullWidth
-                  label="Phone Number"
-                  type="text"
-                  {...register('phone', { required: true })}
-                  placeholder="Phone"
-                />
+                  <TextField
+                    sx={{ my: 2 }}
+                    fullWidth
+                    label="Phone Number"
+                    type="text"
+                    {...register('phone', { required: true })}
+                    placeholder="Phone"
+                  />
 
-                <br />
-                <TextField
-                  sx={{ my: 2 }}
-                  fullWidth
-                  label="Product Name"
-                  defaultValue={name}
-                  type="text"
-                  {...register('DroneName', { required: true })}
-                  placeholder="Drone Name"
-                />
+                  <br />
+                  <TextField
+                    sx={{ my: 2 }}
+                    fullWidth
+                    label="Product Name"
+                    defaultValue={name}
+                    type="text"
+                    {...register('DroneName', { required: true })}
+                    placeholder="Drone Name"
+                  />
 
-                <br />
-                <TextField
-                  sx={{ my: 2 }}
-                  fullWidth
-                  label="Drone Price"
-                  defaultValue={price}
-                  type="number"
-                  {...register('price', { required: true })}
-                  placeholder="Price"
-                />
+                  <br />
+                  <TextField
+                    sx={{ my: 2 }}
+                    fullWidth
+                    label="Drone Price"
+                    defaultValue={price}
+                    type="number"
+                    {...register('price', { required: true })}
+                    placeholder="Price"
+                  />
 
-                <br />
-                <TextField
-                  sx={{ my: 2 }}
-                  fullWidth
-                  label="Address"
-                  multiline
-                  rows={4}
-                  {...register('address', { required: true })}
-                  placeholder="Address"
-                />
-                <br />
-                <TextField
-                  sx={{ display: 'flex', justifyContent: 'center' }}
-                  type="submit"
-                  value="Order Confirm"
-                />
-              </Box>
-            </form>
-          </Box>
+                  <br />
+                  <TextField
+                    sx={{ my: 2 }}
+                    fullWidth
+                    label="Address"
+                    multiline
+                    rows={4}
+                    {...register('address', { required: true })}
+                    placeholder="Address"
+                  />
+                  <br />
+                  <Button
+                    sx={{ display: 'flex', justifyContent: 'center' }}
+                    type="submit"
+                    value="Order Confirm"
+                    variant="contained"
+                    fullWidth
+                  >
+                    Order Confirm
+                  </Button>
+                </Box>
+              </form>
+            </Box>
+          </Grid>
+          {/* Drone Information */}
+          <Grid item xs={12} md={6}>
+            {name}
+          </Grid>
         </Grid>
-        {/* Drone Information */}
-        <Grid item xs={12} md={6}>
-          {name}
-        </Grid>
-      </Grid>
-    </Container>
+      </Container>
+      <Footer />
+    </>
   );
 };
 
