@@ -38,6 +38,7 @@ const Booking = () => {
   const onSubmit = (data) => {
     const purchaseInfo = {
       ...data,
+      droneImg: drone.img,
       status: 'pending',
     };
     axios
@@ -45,7 +46,7 @@ const Booking = () => {
       .then((res) => {
         if (res.data.insertedId) {
           reset();
-          history.push('/dashboard/pay');
+          history.push(`/dashboard/pay/${res.data.insertedId}`);
         }
       });
   };

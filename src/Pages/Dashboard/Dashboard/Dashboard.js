@@ -11,8 +11,8 @@ import ManageAllOrders from '../ManageAllOrders/ManageAllOrders';
 import AddDrone from '../AddDrone/AddDrone';
 import MakeAdmin from '../MakeAdmin/MakeAdmin';
 import ManageDrones from '../ManageDrones/ManageDrones';
-import Pay from '../Pay/Pay';
 import MyOrders from '../MyOrders/MyOrders';
+import Payment from '../Payment/Payment/Payment';
 import {
   Button,
   AppBar,
@@ -240,8 +240,8 @@ function Dashboard(props) {
           <Route exact path={`${path}/`}>
             <DashboardHome />
           </Route>
-          <Route path={`${path}/pay`}>
-            <Pay />
+          <Route path={`${path}/pay/:payId`}>
+            <Payment />
           </Route>
           <Route path={`${path}/my-orders`}>
             <MyOrders />

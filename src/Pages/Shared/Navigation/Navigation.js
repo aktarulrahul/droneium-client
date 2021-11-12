@@ -100,7 +100,7 @@ const Navigation = () => {
               edge="start"
               color="inherit"
               aria-label="menu"
-              sx={{ mr: 2, py: 2 }}
+              sx={{ mr: 2, py: 1 }}
               className={icon}
               onClick={() => setState(true)}
             >
@@ -108,7 +108,7 @@ const Navigation = () => {
             </IconButton>
             <Typography
               className={bandLogo}
-              variant="h4"
+              variant="h5"
               component="div"
               sx={{ flexGrow: 1 }}
             >

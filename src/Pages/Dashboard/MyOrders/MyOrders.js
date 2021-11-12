@@ -31,7 +31,7 @@ const MyOrders = () => {
         setOrders(data);
         setIsLoading(false);
       });
-  }, [isChange]);
+  }, [isChange, user.email]);
   if (isLoading) {
     return <Loading />;
   }
