@@ -14,6 +14,9 @@ import useAuth from '../../../hooks/useAuth';
 import Loading from '../../Shared/Loading/Loading';
 import Navigation from '../../Shared/Navigation/Navigation';
 import Footer from '../../Shared/Footer/Footer';
+import Lottie from 'react-lottie';
+import purchase from '../../../animations/purchase.json';
+import InfoCard from '../InfoCard/InfoCard';
 
 const Booking = () => {
   const { register, handleSubmit, reset } = useForm();
@@ -22,7 +25,6 @@ const Booking = () => {
   const { droneId } = useParams();
   const [drone, setDrone] = useState({});
   const [droneLoading, setDroneLoading] = useState(true);
-  const { name, img, price, description } = drone;
   useEffect(() => {
     setDroneLoading(true);
     fetch(`https://aktarulrahul-droneium.herokuapp.com/drones/${droneId}`)
@@ -46,6 +48,14 @@ const Booking = () => {
           history.push('/dashboard/pay');
         }
       });
+  };
+  const defaultOptions = {
+    loop: true,
+    autoplay: true,
+    animationData: purchase,
+    rendererSettings: {
+      preserveAspectRatio: 'xMidYMid slice',
+    },
   };
   if (droneLoading) {
     return <Loading />;
@@ -115,7 +125,7 @@ const Booking = () => {
                     sx={{ my: 2 }}
                     fullWidth
                     label="Product Name"
-                    defaultValue={name}
+                    defaultValue={drone.name}
                     type="text"
                     {...register('DroneName', { required: true })}
                     placeholder="Drone Name"
@@ -126,7 +136,7 @@ const Booking = () => {
                     sx={{ my: 2 }}
                     fullWidth
                     label="Drone Price"
-                    defaultValue={price}
+                    defaultValue={drone.price}
                     type="number"
                     {...register('price', { required: true })}
                     placeholder="Price"
@@ -158,7 +168,8 @@ const Booking = () => {
           </Grid>
           {/* Drone Information */}
           <Grid item xs={12} md={6}>
-            {name}
+            <Lottie options={defaultOptions} height={'auto'} width={250} />
+            <InfoCard drone={drone} />
           </Grid>
         </Grid>
       </Container>

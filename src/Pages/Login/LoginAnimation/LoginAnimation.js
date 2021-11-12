@@ -1,6 +1,6 @@
 import React from 'react';
 import Lottie from 'react-lottie';
-import animation from '../../../animations/login.json';
+import animation from '../../../animations/dashboard.json';
 
 const LoginAnimation = () => {
   const defaultOptions = {
