@@ -26,7 +26,13 @@ const DroneCard = ({ drone }) => {
           },
         }}
       >
-        <CardMedia component="img" height="300" image={img} alt={name} />
+        <CardMedia
+          component="img"
+          height="300"
+          image={img}
+          alt={name}
+          sx={{ objectFit: 'contain', p: 1 }}
+        />
         <CardContent>
           <Typography gutterBottom variant="h5" component="div">
             {name}

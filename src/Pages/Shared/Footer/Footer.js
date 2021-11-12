@@ -20,25 +20,35 @@ import GroupIcon from '@mui/icons-material/Group';
 import ReviewsIcon from '@mui/icons-material/Reviews';
 import PolicyIcon from '@mui/icons-material/Policy';
 import PermMediaIcon from '@mui/icons-material/PermMedia';
-import drone from '../../../images/drone.png';
+import Lottie from 'react-lottie';
+import drone from '../../../animations/footer.json';
 
 const Footer = () => {
+  const defaultOptions = {
+    loop: true,
+    autoplay: true,
+    animationData: drone,
+    rendererSettings: {
+      preserveAspectRatio: 'xMidYMid slice',
+    },
+  };
   return (
     <Box
-      style={{ backgroundColor: '#1A76D2', color: 'white', marginTop: '100px' }}
+      style={{ backgroundColor: '#1A76D2', color: 'white', marginTop: '200px' }}
     >
-      <Container>
+      <Container maxWidth={false}>
         {/* rone -Fly */}
-        <Grid container spacing={2}>
-          <Grid item xs={12} md={6}>
-            <img
-              src={drone}
-              style={{
-                width: '95%',
-                marginTop: '-85px',
-              }}
-              alt="drone"
-            />
+        <Grid container spacing={2} alignItems="center">
+          <Grid
+            item
+            xs={12}
+            md={6}
+            style={{
+              width: '95%',
+              marginTop: '-180px',
+            }}
+          >
+            <Lottie options={defaultOptions} height={'auto'} width={'auto'} />
           </Grid>
           <Grid item xs={12} md={6}>
             <Typography variant="h1" align="center" sx={{ my: 2 }}>
@@ -132,12 +142,33 @@ const Footer = () => {
                 Subscribe
               </IconButton>
             </Paper>
+            <Typography variant="h6" sx={{ mt: 3 }}>
+              FOLLOW US
+            </Typography>
+            <Box sx={{ display: 'flex' }}>
+              <i
+                style={{ fontSize: '24px', marginRight: '10px' }}
+                className="fab fa-facebook"
+              ></i>
+              <i
+                style={{ fontSize: '24px', marginRight: '10px' }}
+                className="fab fa-twitter-square"
+              ></i>
+              <i
+                style={{ fontSize: '24px', marginRight: '10px' }}
+                className="fab fa-instagram-square"
+              ></i>
+              <i
+                style={{ fontSize: '24px', marginRight: '10px' }}
+                className="fab fa-youtube"
+              ></i>
+            </Box>
           </Grid>
         </Grid>
         {/* Divider */}
         <Divider variant="middle" />
         {/* text */}
-        <Typography variant="h6" align="center" sx={{ my: 1 }}>
+        <Typography variant="h6" align="center" sx={{ mt: 1 }}>
           Droneium | 2021. All rights reserved.
         </Typography>
       </Container>

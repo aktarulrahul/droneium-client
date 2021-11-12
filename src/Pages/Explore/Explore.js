@@ -5,7 +5,7 @@ import Navigation from '../Shared/Navigation/Navigation';
 
 const Explore = () => {
   return (
-    <div>
+    <div style={{ overflowX: 'hidden' }}>
       <Navigation />
       <DroneContainer />
       <Footer />

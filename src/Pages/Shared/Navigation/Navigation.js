@@ -100,7 +100,7 @@ const Navigation = () => {
               edge="start"
               color="inherit"
               aria-label="menu"
-              sx={{ mr: 2 }}
+              sx={{ mr: 2, py: 2 }}
               className={icon}
               onClick={() => setState(true)}
             >

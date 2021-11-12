@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { Container, Grid, Typography } from '@mui/material';
+import { Button, Container, Grid, Box } from '@mui/material';
 import DroneCard from '../DroneCard/DroneCard';
 import Fade from 'react-reveal/Fade';
 import Loading from '../../Loading/Loading';
+import { NavLink } from 'react-router-dom';
+import DroneBanner from '../../DroneBanner/DroneBanner';
 
 const DroneContainer = ({ home }) => {
   const [drones, setDrones] = useState([]);
@@ -26,18 +28,45 @@ const DroneContainer = ({ home }) => {
   }
 
   return (
-    <Container sx={{ my: 3 }}>
-      <Typography variant="h3" sx={{ textAlign: 'center', my: 2 }}>
-        Our Drones
-      </Typography>
-      <Fade left>
-        <Grid container spacing={2}>
-          {displayDrones.map((drone) => (
-            <DroneCard key={drone._id} drone={drone} />
-          ))}
-        </Grid>
-      </Fade>
-    </Container>
+    <>
+      <DroneBanner />
+      <Container sx={{ my: 2 }}>
+        <Fade left>
+          <Grid container alignItems="center" spacing={2}>
+            {displayDrones.map((drone) => (
+              <DroneCard key={drone._id} drone={drone} />
+            ))}
+          </Grid>
+        </Fade>
+        {home && (
+          <Box
+            sx={{
+              display: 'flex',
+              justifyContent: 'center',
+              mt: 4,
+              transitionDuration: '0.4s',
+              transitionProperty: 'transform',
+              transitionTimingFunction: 'ease-in-out',
+              '&:hover, &:focus': {
+                transform: 'scale(1.03)',
+              },
+            }}
+          >
+            <NavLink
+              to="/explore"
+              style={{
+                textDecoration: 'none',
+                color: 'inherit',
+              }}
+            >
+              <Button variant="contained" size="large">
+                EXPLORE ALL DRONES
+              </Button>
+            </NavLink>
+          </Box>
+        )}
+      </Container>
+    </>
   );
 };
 

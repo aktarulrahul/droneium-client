@@ -28,12 +28,12 @@ const Banner = () => {
           clickable: true,
         }}
         navigation={true}
-        style={{ backgroundColor: 'white' }}
+        style={{ backgroundColor: 'white', width: '100%' }}
       >
         <SwiperSlide>
           <BannerSlide1 />
         </SwiperSlide>
-        <SwiperSlide>
+        <SwiperSlide style={{ backgroundImage: 'none' }}>
           <BannerSlide2 />
         </SwiperSlide>
       </Swiper>

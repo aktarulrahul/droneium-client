@@ -63,8 +63,8 @@ const Booking = () => {
   return (
     <>
       <Navigation />
-      <Container>
-        <Grid container spacing={2}>
+      <Container maxWidth={false}>
+        <Grid container spacing={2} alignItems="center">
           {/* Shipping Information */}
           <Grid item xs={12} md={6}>
             <Box

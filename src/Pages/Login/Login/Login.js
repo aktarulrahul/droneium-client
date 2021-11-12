@@ -36,6 +36,7 @@ const Login = () => {
   };
   return (
     <Container
+      maxWidth={false}
       sx={{
         my: 1,
         py: 8,
@@ -44,7 +45,7 @@ const Login = () => {
         boxShadow: '0 0 10px rgba(0,0,0,0.6)',
       }}
     >
-      <Grid container spacing={2} sx={{ alignItems: 'center' }}>
+      <Grid container spacing={2} alignItems="center">
         <Grid item xs={12} md={6}>
           <LoginAnimation />
         </Grid>

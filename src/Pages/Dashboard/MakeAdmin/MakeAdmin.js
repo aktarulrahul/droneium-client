@@ -35,6 +35,7 @@ const MakeAdmin = () => {
   };
   return (
     <Container
+      maxWidth={false}
       sx={{
         my: 8,
         py: 8,

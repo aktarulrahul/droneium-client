@@ -15,8 +15,8 @@ const ReviewBanner = () => {
     },
   };
   return (
-    <Container sx={{ mx: 2, mb: 3 }}>
-      <Grid container spacing={2} sx={{ alignItems: 'center' }}>
+    <Container maxWidth={false} sx={{ mx: 2, mb: 3 }}>
+      <Grid container spacing={2} alignItems="center">
         <Grid item xs={12} md={6}>
           <Lottie options={defaultOptions} height={'auto'} width={'auto'} />
         </Grid>
@@ -26,7 +26,7 @@ const ReviewBanner = () => {
               OUR CUSTOMER STORIES
             </Typography>
             <Typography sx={{ mb: 3, lineHeight: 1.2 }} center variant="h2">
-              Better Service Starts Here
+              We Love Our Clients, And They Love Us
             </Typography>
 
             <NavLink

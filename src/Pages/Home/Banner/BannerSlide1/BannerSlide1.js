@@ -3,7 +3,6 @@ import { Button, Container, Grid, Typography } from '@mui/material';
 import { NavLink } from 'react-router-dom';
 import Lottie from 'react-lottie';
 import homeBanner from '../../../../animations/homeBanner.json';
-import banner from '../../../../images/banner1.jpg';
 import Fade from 'react-reveal/Fade';
 
 const BannerSlide1 = () => {
@@ -16,16 +15,8 @@ const BannerSlide1 = () => {
     },
   };
   return (
-    <Container
-      sx={{
-        backgroundImage: `url(${banner})`,
-        backgroundRepeat: 'no-repeat',
-        backgroundPosition: 'center',
-        backgroundSize: 'cover',
-        minHeight: '95vh',
-      }}
-    >
-      <Grid container spacing={2} sx={{ alignItems: 'center' }}>
+    <Container maxWidth={false}>
+      <Grid container spacing={2} alignItems="center">
         <Grid item xs={12} md={6}>
           <Lottie options={defaultOptions} height={'auto'} width={'auto'} />
         </Grid>

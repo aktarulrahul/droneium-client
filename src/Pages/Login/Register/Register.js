@@ -37,6 +37,7 @@ const Register = () => {
   };
   return (
     <Container
+      maxWidth={false}
       sx={{
         my: 1,
         py: 8,
@@ -44,7 +45,7 @@ const Register = () => {
         boxShadow: '0 0 10px rgba(0,0,0,0.6)',
       }}
     >
-      <Grid container spacing={2} sx={{ alignItems: 'center' }}>
+      <Grid container spacing={2} alignItems="center">
         <Grid item xs={12} md={6}>
           <Typography sx={{ textAlign: 'center' }} variant="h5" gutterBottom>
             Please Register

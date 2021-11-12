@@ -24,7 +24,11 @@ body {
 .swiper-slide {
   text-align: center;
   font-size: 18px;
-  background: #fff;
+  background-image: url('../../../../images/banner1.jpg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  min-height: 95vh;
 
   /* Center slide text vertically */
   display: -webkit-box;

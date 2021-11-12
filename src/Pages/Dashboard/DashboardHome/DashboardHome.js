@@ -14,6 +14,7 @@ const DashboardHome = () => {
   const { user, admin } = useAuth();
   return (
     <Container
+      maxWidth={false}
       sx={{
         my: 1,
         pt: 4,
@@ -33,7 +34,7 @@ const DashboardHome = () => {
       >
         Welcome To Dashboard
       </Typography>
-      <Grid container spacing={2} sx={{ alignItems: 'center' }}>
+      <Grid container spacing={2} alignItems="center">
         <Grid item xs={12} md={6}>
           <LoginAnimation />
         </Grid>
