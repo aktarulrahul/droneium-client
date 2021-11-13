@@ -64,7 +64,7 @@ const Booking = () => {
   return (
     <>
       <Navigation />
-      <Container maxWidth={false}>
+      <Container>
         <Grid container spacing={2} alignItems="center">
           {/* Shipping Information */}
           <Grid item xs={12} md={6}>
@@ -82,8 +82,8 @@ const Booking = () => {
               <form onSubmit={handleSubmit(onSubmit)}>
                 <Box
                   sx={{
-                    width: 500,
-                    maxWidth: '100%',
+                    minWidth: 300,
+                    maxWidth: 500,
                   }}
                 >
                   <TextField

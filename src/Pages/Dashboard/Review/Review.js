@@ -45,7 +45,7 @@ const Review = () => {
       <form onSubmit={handleSubmit(onSubmit)}>
         <Box
           sx={{
-            width: 500,
+            width: 350,
             maxWidth: '100%',
           }}
         >
