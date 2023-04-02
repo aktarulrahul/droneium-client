@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
-import { useHistory, useParams } from 'react-router';
-import axios from 'axios';
-import { useForm } from 'react-hook-form';
+import React, { useEffect, useState } from "react";
+import { useHistory, useParams } from "react-router";
+import axios from "axios";
+import { useForm } from "react-hook-form";
 import {
   Container,
   Grid,
@@ -9,14 +9,14 @@ import {
   Typography,
   TextField,
   Button,
-} from '@mui/material';
-import useAuth from '../../../hooks/useAuth';
-import Loading from '../../Shared/Loading/Loading';
-import Navigation from '../../Shared/Navigation/Navigation';
-import Footer from '../../Shared/Footer/Footer';
-import Lottie from 'react-lottie';
-import purchase from '../../../animations/purchase.json';
-import InfoCard from '../InfoCard/InfoCard';
+} from "@mui/material";
+import useAuth from "../../../hooks/useAuth";
+import Loading from "../../Shared/Loading/Loading";
+import Navigation from "../../Shared/Navigation/Navigation";
+import Footer from "../../Shared/Footer/Footer";
+import Lottie from "react-lottie";
+import purchase from "../../../animations/purchase.json";
+import InfoCard from "../InfoCard/InfoCard";
 
 const Booking = () => {
   const { register, handleSubmit, reset } = useForm();
@@ -27,7 +27,7 @@ const Booking = () => {
   const [droneLoading, setDroneLoading] = useState(true);
   useEffect(() => {
     setDroneLoading(true);
-    fetch(`https://aktarulrahul-droneium.herokuapp.com/drones/${droneId}`)
+    fetch(`https://droneium-api.onrender.com/drones/${droneId}`)
       .then((res) => res.json())
       .then((data) => {
         setDrone(data);
@@ -39,10 +39,10 @@ const Booking = () => {
     const purchaseInfo = {
       ...data,
       droneImg: drone.img,
-      status: 'pending',
+      status: "pending",
     };
     axios
-      .post('https://aktarulrahul-droneium.herokuapp.com/orders', purchaseInfo)
+      .post("https://droneium-api.onrender.com/orders", purchaseInfo)
       .then((res) => {
         if (res.data.insertedId) {
           reset();
@@ -55,7 +55,7 @@ const Booking = () => {
     autoplay: true,
     animationData: purchase,
     rendererSettings: {
-      preserveAspectRatio: 'xMidYMid slice',
+      preserveAspectRatio: "xMidYMid slice",
     },
   };
   if (droneLoading) {
@@ -70,10 +70,10 @@ const Booking = () => {
           <Grid item xs={12} md={6}>
             <Box
               sx={{
-                display: 'flex',
-                flexDirection: 'column',
-                justifyContent: 'center',
-                alignItems: 'center',
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "center",
+                alignItems: "center",
               }}
             >
               <Typography variant="h2" sx={{ my: 2 }}>
@@ -92,7 +92,7 @@ const Booking = () => {
                     label="Name"
                     defaultValue={user.displayName}
                     multiline
-                    {...register('name', {
+                    {...register("name", {
                       required: true,
                     })}
                     placeholder="Name"
@@ -104,7 +104,7 @@ const Booking = () => {
                     fullWidth
                     label="Email"
                     defaultValue={user.email}
-                    {...register('email', {
+                    {...register("email", {
                       required: true,
                     })}
                     placeholder="Email"
@@ -117,7 +117,7 @@ const Booking = () => {
                     fullWidth
                     label="Phone Number"
                     type="text"
-                    {...register('phone', { required: true })}
+                    {...register("phone", { required: true })}
                     placeholder="Phone"
                   />
 
@@ -128,7 +128,7 @@ const Booking = () => {
                     label="Product Name"
                     defaultValue={drone.name}
                     type="text"
-                    {...register('DroneName', { required: true })}
+                    {...register("DroneName", { required: true })}
                     placeholder="Drone Name"
                   />
 
@@ -139,7 +139,7 @@ const Booking = () => {
                     label="Drone Price"
                     defaultValue={drone.price}
                     type="number"
-                    {...register('price', { required: true })}
+                    {...register("price", { required: true })}
                     placeholder="Price"
                   />
 
@@ -150,12 +150,12 @@ const Booking = () => {
                     label="Address"
                     multiline
                     rows={4}
-                    {...register('address', { required: true })}
+                    {...register("address", { required: true })}
                     placeholder="Address"
                   />
                   <br />
                   <Button
-                    sx={{ display: 'flex', justifyContent: 'center' }}
+                    sx={{ display: "flex", justifyContent: "center" }}
                     type="submit"
                     value="Order Confirm"
                     variant="contained"
@@ -169,7 +169,7 @@ const Booking = () => {
           </Grid>
           {/* Drone Information */}
           <Grid item xs={12} md={6}>
-            <Lottie options={defaultOptions} height={'auto'} width={250} />
+            <Lottie options={defaultOptions} height={"auto"} width={250} />
             <InfoCard drone={drone} />
           </Grid>
         </Grid>

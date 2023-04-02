@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from "react";
 import {
   getAuth,
   createUserWithEmailAndPassword,
@@ -9,8 +9,8 @@ import {
   signOut,
   updateProfile,
   getIdToken,
-} from 'firebase/auth';
-import firebaseInitialize from '../Pages/Login/Login/firebase/initialize.firebase';
+} from "firebase/auth";
+import firebaseInitialize from "../Pages/Login/Login/firebase/initialize.firebase";
 
 // initialize firebase app
 firebaseInitialize();
@@ -18,9 +18,9 @@ firebaseInitialize();
 const useFirebase = () => {
   const [user, setUser] = useState({});
   const [isLoading, setIsLoading] = useState(true);
-  const [authError, setAuthError] = useState('');
+  const [authError, setAuthError] = useState("");
   const [admin, setAdmin] = useState(false);
-  const [token, setToken] = useState('');
+  const [token, setToken] = useState("");
 
   const auth = getAuth();
   const googleProvider = new GoogleAuthProvider();
@@ -29,17 +29,17 @@ const useFirebase = () => {
     setIsLoading(true);
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
-        setAuthError('');
+        setAuthError("");
         const newUser = { email, displayName: name };
         setUser(newUser);
         // save user to the database
-        saveUser(email, name, 'POST');
+        saveUser(email, name, "POST");
         // Send name to firebase after creation
         updateProfile(auth.currentUser, {
           displayName: name,
         })
           .then(() => {
-            const destination = location?.state?.from || '/dashboard';
+            const destination = location?.state?.from || "/dashboard";
             history.replace(destination);
           })
           .catch((error) => {});
@@ -54,9 +54,9 @@ const useFirebase = () => {
     setIsLoading(true);
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
-        const destination = location?.state?.from || '/dashboard';
+        const destination = location?.state?.from || "/dashboard";
         history.replace(destination);
-        setAuthError('');
+        setAuthError("");
       })
       .catch((error) => {
         setAuthError(error.message);
@@ -69,10 +69,10 @@ const useFirebase = () => {
     signInWithPopup(auth, googleProvider)
       .then((result) => {
         const user = result.user;
-        saveUser(user.email, user.displayName, 'PUT');
-        const destination = location?.state?.from || '/dashboard';
+        saveUser(user.email, user.displayName, "PUT");
+        const destination = location?.state?.from || "/dashboard";
         history.replace(destination);
-        setAuthError('');
+        setAuthError("");
       })
       .catch((error) => {
         setAuthError(error.message);
@@ -99,7 +99,7 @@ const useFirebase = () => {
 
   // Check user role
   useEffect(() => {
-    fetch(`https://aktarulrahul-droneium.herokuapp.com/users/${user.email}`)
+    fetch(`https://droneium-api.onrender.com/users/${user.email}`)
       .then((res) => res.json())
       .then((data) => setAdmin(data.admin));
   }, [user.email]);
@@ -120,10 +120,10 @@ const useFirebase = () => {
   // Save User to The Database
   const saveUser = (email, displayName, method) => {
     const user = { email, displayName };
-    fetch('https://aktarulrahul-droneium.herokuapp.com/users', {
+    fetch("https://droneium-api.onrender.com/users", {
       method: method,
       headers: {
-        'content-type': 'application/json',
+        "content-type": "application/json",
       },
       body: JSON.stringify(user),
     }).then();

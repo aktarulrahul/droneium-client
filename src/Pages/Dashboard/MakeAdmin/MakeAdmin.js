@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import {
   Box,
   Button,
@@ -6,13 +6,13 @@ import {
   TextField,
   Typography,
   Alert,
-} from '@mui/material';
-import AccountCircle from '@mui/icons-material/AccountCircle';
-import axios from 'axios';
-import useAuth from '../../../hooks/useAuth';
+} from "@mui/material";
+import AccountCircle from "@mui/icons-material/AccountCircle";
+import axios from "axios";
+import useAuth from "../../../hooks/useAuth";
 
 const MakeAdmin = () => {
-  const [email, setEmail] = useState('');
+  const [email, setEmail] = useState("");
   const { token } = useAuth();
   const [success, setSuccess] = useState(false);
   const handleOnBlur = (e) => {
@@ -22,7 +22,7 @@ const MakeAdmin = () => {
     e.preventDefault();
     const user = { email };
     axios
-      .put('https://aktarulrahul-droneium.herokuapp.com/users/admin', user, {
+      .put("https://droneium-api.onrender.com/users/admin", user, {
         headers: {
           authorization: `Bearer ${token}`,
         },
@@ -39,14 +39,14 @@ const MakeAdmin = () => {
       sx={{
         my: 8,
         py: 8,
-        borderRadius: '15px',
-        boxShadow: '0 0 10px rgba(0,0,0,0.6)',
+        borderRadius: "15px",
+        boxShadow: "0 0 10px rgba(0,0,0,0.6)",
       }}
     >
       <Typography variant="h4">Make An Admin</Typography>
       <form onSubmit={handleAdminSubmit}>
-        <Box sx={{ display: 'flex', alignItems: 'flex-end', my: 3 }}>
-          <AccountCircle sx={{ color: 'action.active', mr: 1, my: 0.5 }} />
+        <Box sx={{ display: "flex", alignItems: "flex-end", my: 3 }}>
+          <AccountCircle sx={{ color: "action.active", mr: 1, my: 0.5 }} />
           <TextField
             type="email"
             onBlur={handleOnBlur}

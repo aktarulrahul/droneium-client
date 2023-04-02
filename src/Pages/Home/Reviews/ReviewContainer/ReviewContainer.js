@@ -1,17 +1,17 @@
-import React, { useEffect, useState } from 'react';
-import ReviewCard from '../ReviewCard/ReviewCard';
-import Loading from '../../../Shared/Loading/Loading';
-import { Box } from '@mui/material';
-import Masonry, { ResponsiveMasonry } from 'react-responsive-masonry';
-import bg from '../../../../images/qoute.jpg';
-import ReviewBanner from '../ReviewBanner/ReviewBanner';
+import React, { useEffect, useState } from "react";
+import ReviewCard from "../ReviewCard/ReviewCard";
+import Loading from "../../../Shared/Loading/Loading";
+import { Box } from "@mui/material";
+import Masonry, { ResponsiveMasonry } from "react-responsive-masonry";
+import bg from "../../../../images/qoute.jpg";
+import ReviewBanner from "../ReviewBanner/ReviewBanner";
 
 const ReviewContainer = () => {
   const [reviews, setReviews] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
     setIsLoading(true);
-    fetch('https://aktarulrahul-droneium.herokuapp.com/reviews')
+    fetch("https://droneium-api.onrender.com/reviews")
       .then((res) => res.json())
       .then((data) => {
         setReviews(data);
@@ -26,9 +26,9 @@ const ReviewContainer = () => {
     <Box
       sx={{
         backgroundImage: `url(${bg})`,
-        backgroundRepeat: 'no-repeat',
-        backgroundPosition: 'center',
-        backgroundSize: 'cover',
+        backgroundRepeat: "no-repeat",
+        backgroundPosition: "center",
+        backgroundSize: "cover",
         my: 8,
       }}
     >

@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
-import Loading from '../../Shared/Loading/Loading';
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import Loading from "../../Shared/Loading/Loading";
 import {
   Button,
   Paper,
@@ -10,7 +10,7 @@ import {
   TableContainer,
   TableHead,
   TableRow,
-} from '@mui/material';
+} from "@mui/material";
 
 const ManageDrones = () => {
   const [drones, setDrones] = useState([]);
@@ -19,7 +19,7 @@ const ManageDrones = () => {
 
   useEffect(() => {
     setIsLoading(true);
-    fetch('https://aktarulrahul-droneium.herokuapp.com/drones')
+    fetch("https://droneium-api.onrender.com/drones")
       .then((res) => res.json())
       .then((data) => {
         setDrones(data);
@@ -31,9 +31,9 @@ const ManageDrones = () => {
   }
   const handleDelete = (id) => {
     setIsDeleted(false);
-    if (window.confirm('Want To Delete the Drone?')) {
+    if (window.confirm("Want To Delete the Drone?")) {
       axios
-        .delete(`https://aktarulrahul-droneium.herokuapp.com/drones/${id}`)
+        .delete(`https://droneium-api.onrender.com/drones/${id}`)
         .then((res) => {
           if (res.data.deletedCount) {
             setIsDeleted(true);
@@ -48,17 +48,17 @@ const ManageDrones = () => {
       <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
         <TableHead>
           <TableRow>
-            <TableCell sx={{ fontWeight: 'bold' }}>Drone Name</TableCell>
-            <TableCell sx={{ fontWeight: 'bold' }} align="right">
+            <TableCell sx={{ fontWeight: "bold" }}>Drone Name</TableCell>
+            <TableCell sx={{ fontWeight: "bold" }} align="right">
               Price
             </TableCell>
-            <TableCell sx={{ fontWeight: 'bold' }} align="right">
+            <TableCell sx={{ fontWeight: "bold" }} align="right">
               Image
             </TableCell>
-            <TableCell sx={{ fontWeight: 'bold' }} align="right">
+            <TableCell sx={{ fontWeight: "bold" }} align="right">
               Description
             </TableCell>
-            <TableCell sx={{ fontWeight: 'bold' }} align="right">
+            <TableCell sx={{ fontWeight: "bold" }} align="right">
               Action
             </TableCell>
           </TableRow>
@@ -67,7 +67,7 @@ const ManageDrones = () => {
           {drones.map((drone) => (
             <TableRow
               key={drone._id}
-              sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+              sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
             >
               <TableCell component="th" scope="row">
                 {drone.name}

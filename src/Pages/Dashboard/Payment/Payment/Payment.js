@@ -1,11 +1,11 @@
-import { Container, Grid } from '@mui/material';
-import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router';
-import Loading from '../../../Shared/Loading/Loading';
-import InfoCard from '../InfoCard/InfoCard';
-import PayCard from '../PayCard/PayCard';
-import Lottie from 'react-lottie';
-import payment from '../../../../animations/payment.json';
+import { Container, Grid } from "@mui/material";
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router";
+import Loading from "../../../Shared/Loading/Loading";
+import InfoCard from "../InfoCard/InfoCard";
+import PayCard from "../PayCard/PayCard";
+import Lottie from "react-lottie";
+import payment from "../../../../animations/payment.json";
 
 const Payment = () => {
   const [orderInfo, setOrderInfo] = useState({});
@@ -14,7 +14,7 @@ const Payment = () => {
   const { payId } = useParams();
   useEffect(() => {
     setIsInfoLoading(true);
-    fetch(`https://aktarulrahul-droneium.herokuapp.com/orders/${payId}`)
+    fetch(`https://droneium-api.onrender.com/orders/${payId}`)
       .then((res) => res.json())
       .then((data) => {
         setOrderInfo(data);
@@ -27,7 +27,7 @@ const Payment = () => {
     autoplay: true,
     animationData: payment,
     rendererSettings: {
-      preserveAspectRatio: 'xMidYMid slice',
+      preserveAspectRatio: "xMidYMid slice",
     },
   };
   if (isInfoLoading) {
@@ -48,7 +48,7 @@ const Payment = () => {
           <PayCard expire={expire} setExpire={setExpire} />
         </Grid>
         <Grid item xs={12} md={6}>
-          <Lottie options={defaultOptions} height={'auto'} width={'auto'} />
+          <Lottie options={defaultOptions} height={"auto"} width={"auto"} />
         </Grid>
       </Grid>
     </Container>

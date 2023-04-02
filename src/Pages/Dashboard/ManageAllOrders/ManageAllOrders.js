@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 import {
   Button,
   MenuItem,
@@ -11,8 +11,8 @@ import {
   TableContainer,
   TableHead,
   TableRow,
-} from '@mui/material';
-import Loading from '../../Shared/Loading/Loading';
+} from "@mui/material";
+import Loading from "../../Shared/Loading/Loading";
 
 const ManageAllOrders = () => {
   const [orders, setOrders] = useState([]);
@@ -21,7 +21,7 @@ const ManageAllOrders = () => {
 
   useEffect(() => {
     setIsLoading(true);
-    fetch('https://aktarulrahul-droneium.herokuapp.com/orders')
+    fetch("https://droneium-api.onrender.com/orders")
       .then((res) => res.json())
       .then((data) => {
         setOrders(data);
@@ -33,9 +33,9 @@ const ManageAllOrders = () => {
   }
   const handleCancel = (id) => {
     setIsChange(false);
-    if (window.confirm('Want To Cancel the Order?')) {
+    if (window.confirm("Want To Cancel the Order?")) {
       axios
-        .delete(`https://aktarulrahul-droneium.herokuapp.com/orders/${id}`)
+        .delete(`https://droneium-api.onrender.com/orders/${id}`)
         .then((res) => {
           if (res.data.deletedCount) {
             setIsChange(true);
@@ -48,7 +48,7 @@ const ManageAllOrders = () => {
   const handleStatusChange = (e, id) => {
     if (window.confirm(`${e.target.value} the Order?`)) {
       axios
-        .put(`https://aktarulrahul-droneium.herokuapp.com/orders/${id}`, {
+        .put(`https://droneium-api.onrender.com/orders/${id}`, {
           status: e.target.value,
         })
         .then((res) => {
@@ -65,26 +65,26 @@ const ManageAllOrders = () => {
       <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
         <TableHead>
           <TableRow>
-            <TableCell sx={{ fontWeight: 'bold' }}>Customer Name</TableCell>
-            <TableCell sx={{ fontWeight: 'bold' }} align="right">
+            <TableCell sx={{ fontWeight: "bold" }}>Customer Name</TableCell>
+            <TableCell sx={{ fontWeight: "bold" }} align="right">
               Email
             </TableCell>
-            <TableCell sx={{ fontWeight: 'bold' }} align="right">
+            <TableCell sx={{ fontWeight: "bold" }} align="right">
               Phone Number
             </TableCell>
-            <TableCell sx={{ fontWeight: 'bold' }} align="right">
+            <TableCell sx={{ fontWeight: "bold" }} align="right">
               Product Name
             </TableCell>
-            <TableCell sx={{ fontWeight: 'bold' }} align="right">
+            <TableCell sx={{ fontWeight: "bold" }} align="right">
               address
             </TableCell>
-            <TableCell sx={{ fontWeight: 'bold' }} align="right">
+            <TableCell sx={{ fontWeight: "bold" }} align="right">
               Status
             </TableCell>
-            <TableCell sx={{ fontWeight: 'bold' }} align="right">
+            <TableCell sx={{ fontWeight: "bold" }} align="right">
               Update Status
             </TableCell>
-            <TableCell sx={{ fontWeight: 'bold' }} align="right">
+            <TableCell sx={{ fontWeight: "bold" }} align="right">
               Action
             </TableCell>
           </TableRow>
@@ -93,7 +93,7 @@ const ManageAllOrders = () => {
           {orders.map((drone) => (
             <TableRow
               key={drone._id}
-              sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+              sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
             >
               <TableCell component="th" scope="row">
                 {drone.name}

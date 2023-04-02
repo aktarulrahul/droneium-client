@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import axios from 'axios';
-import { useForm } from 'react-hook-form';
+import React, { useState } from "react";
+import axios from "axios";
+import { useForm } from "react-hook-form";
 import {
   TextField,
   Typography,
@@ -10,9 +10,9 @@ import {
   MenuItem,
   Select,
   Rating,
-} from '@mui/material';
-import { NavLink } from 'react-router-dom';
-import useAuth from '../../../hooks/useAuth';
+} from "@mui/material";
+import { NavLink } from "react-router-dom";
+import useAuth from "../../../hooks/useAuth";
 
 const Review = () => {
   const [success, setSuccess] = useState(false);
@@ -22,7 +22,7 @@ const Review = () => {
     const reviewData = { ...data, img: user.photoURL };
     setSuccess(false);
     axios
-      .post('https://aktarulrahul-droneium.herokuapp.com/reviews', reviewData)
+      .post("https://droneium-api.onrender.com/reviews", reviewData)
       .then((res) => {
         if (res.data.insertedId) {
           reset();
@@ -33,10 +33,10 @@ const Review = () => {
   return (
     <Box
       sx={{
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: 'center',
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        alignItems: "center",
       }}
     >
       <Typography variant="h2" sx={{ my: 2 }}>
@@ -46,7 +46,7 @@ const Review = () => {
         <Box
           sx={{
             width: 350,
-            maxWidth: '100%',
+            maxWidth: "100%",
           }}
         >
           <TextField
@@ -55,7 +55,7 @@ const Review = () => {
             label="Name"
             defaultValue={user.displayName}
             multiline
-            {...register('name', {
+            {...register("name", {
               required: true,
             })}
             placeholder="Name"
@@ -69,7 +69,7 @@ const Review = () => {
             type="email"
             defaultValue={user.email}
             multiline
-            {...register('email', {
+            {...register("email", {
               required: true,
             })}
             placeholder="Email"
@@ -83,7 +83,7 @@ const Review = () => {
             label="Review"
             multiline
             rows={4}
-            {...register('review', { required: true })}
+            {...register("review", { required: true })}
             placeholder="Enter Your Review"
           />
           <br />
@@ -93,7 +93,7 @@ const Review = () => {
             fullWidth
             multiline
             defaultValue="5"
-            {...register('rating', { required: true })}
+            {...register("rating", { required: true })}
           >
             <MenuItem value="1">
               <Rating name="read-only" value="1" readOnly />
@@ -114,7 +114,7 @@ const Review = () => {
 
           <br />
           <TextField
-            sx={{ display: 'flex', justifyContent: 'center' }}
+            sx={{ display: "flex", justifyContent: "center" }}
             type="submit"
             value="Add Review"
           />
@@ -124,7 +124,7 @@ const Review = () => {
       {success && (
         <Alert sx={{ my: 2 }} severity="success">
           <AlertTitle>Success</AlertTitle>
-          Thanks for your feedback{' '}
+          Thanks for your feedback{" "}
           <NavLink to="/explore">Explore All Drones!</NavLink>
         </Alert>
       )}
